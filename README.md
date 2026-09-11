@@ -2,16 +2,23 @@
 
 [DWDS](https://www.dwds.de) MCP — German Digital Dictionary (Digitales Wörterbuch der deutschen Sprache). Keyless.
 
-Part of [Pipeworx](https://pipeworx.io) — an MCP gateway connecting AI agents to 1476+ live data sources.
+Part of [Pipeworx](https://pipeworx.io) — an MCP gateway connecting AI agents to 1558+ live data sources.
 
 ## Tools
 
-- `snippet(query)` — JSON dictionary snippet for a German word
-- `lemma(form)` — lemma resolution (form → base form)
-- `corpus_concordance(query, corpus?, limit?)` — search the DWDS corpus
-- `kwic(query, corpus?, limit?)` — keyword-in-context view
+- `snippet(query)` — dictionary entry summary for a German word (part of speech, base lemma, link to full entry). Exact lemmas only.
+- `dwds_frequency(query)` — how common a German word is: absolute hit count + per-million frequency in the DWDS reference corpus.
 
-## Data source
+## Auth
+
+None — keyless.
+
+## Removed tools
+
+- `lemma` — removed 2026-08-07. Called `/api/lemma/`, which 404s for every input; the endpoint was never documented and never worked. No keyless lemmatizer replacement exists (`/wb/snippet`, `dwdsmor`, `wb/lemma` all fail on inflected forms).
+- `corpus_concordance` / `kwic` — removed 2026-08-31 (fleet #729). DWDS retired its public corpus-concordance / KWIC API; corpus search moved to the access-restricted "dstar" platform (`ddc.dwds.de`), which no longer serves JSON. No keyless replacement exists. For raw corpus example sentences, search manually at https://www.dwds.de.
+
+## Data sources
 
 `https://www.dwds.de/api/`
 
@@ -59,9 +66,35 @@ directly, instead of just this one's:
 }
 ```
 
-Both URLs reach the same gateway and the same 1476+ data sources. The
+Both URLs reach the same gateway and the same 1558+ data sources. The
 only difference is which pack's tools are listed **directly**; `ask_pipeworx`
 reaches all of them from either one.
+
+## Standalone (no gateway account)
+
+This package also runs as a local stdio MCP server — no Pipeworx account, no
+gateway round-trip:
+
+```json
+{
+  "mcpServers": {
+    "dwds": {
+      "command": "npx",
+      "args": ["-y", "@pipeworx/mcp-dwds"]
+    }
+  }
+}
+```
+
+Or run it directly to confirm it starts:
+
+```bash
+npx -y @pipeworx/mcp-dwds
+```
+
+It speaks MCP over stdin/stdout and answers `initialize`/`tools/list`/`tools/call`
+for **only** this pack's tools — none of the shared meta-tools the gateway
+connection above adds. Same source, same tools, no ask_pipeworx routing.
 
 ## Using with ask_pipeworx
 
