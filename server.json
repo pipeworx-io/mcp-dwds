@@ -3,7 +3,7 @@
   "name": "io.github.pipeworx-io/dwds",
   "title": "Dwds",
   "description": "DWDS MCP — German Digital Dictionary.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "websiteUrl": "https://pipeworx.io/packs/dwds",
   "repository": {
     "url": "https://github.com/pipeworx-io/mcp-dwds",
