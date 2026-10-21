@@ -1,6 +1,6 @@
 {
   "name": "@pipeworx/mcp-dwds",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "DWDS MCP — German Digital Dictionary.",
   "type": "module",
   "main": "src/index.ts",
@@ -26,7 +26,7 @@
     "@cloudflare/workers-types": "^4.20260405.1"
   },
   "pipeworx": {
-    "sourceHash": "v1-8b9c720fc2bd4f876b5c514a12a887f7ba267e7429cfbe1773697439f63311ae",
-    "sourceCommit": "4fa4c64448be06f4a2ee4cee19f756f3558a7cad"
+    "sourceHash": "v1-4b137e6f9a26242617a267fb3ae2efe02da7dc15e51370da1dd0021e9f2e2802",
+    "sourceCommit": "5749f83c0ea115fab4c0c0ef04b66b05f2507d67"
   }
 }
