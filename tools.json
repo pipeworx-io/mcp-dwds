@@ -1,0 +1,34 @@
+[
+  {
+    "name": "snippet",
+    "description": "Dictionary entry summary for a German word from DWDS.de — part of speech (Wortart), the base lemma, and a link to the full dictionary entry. Example: snippet({ query: \"Haus\" }).",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "German word, e.g. \"Haus\"."
+        }
+      },
+      "required": [
+        "query"
+      ]
+    }
+  },
+  {
+    "name": "dwds_frequency",
+    "description": "How common a German word is: its absolute hit count and per-million frequency in the DWDS reference corpus. Answers \"how frequent is the German word X\", \"how common is <word>\". Example: dwds_frequency({ query: \"Haus\" }).",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "German word or lemma, e.g. \"Haus\"."
+        }
+      },
+      "required": [
+        "query"
+      ]
+    }
+  }
+]
